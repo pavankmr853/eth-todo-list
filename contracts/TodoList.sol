@@ -11,6 +11,12 @@ contract TodoList {
 
 mapping(uint => Task) public tasks;
 
+event TaskCreated(
+    uint id,
+    string content,
+    bool completed
+  );
+
 constructor() public {
        createTask("For quires ping me in https://www.instagram.com/pardhu_son_of_pandu_garu/");
      }
@@ -18,5 +24,6 @@ constructor() public {
 function createTask(string memory _content) public {
   taskCount ++;
   tasks[taskCount] = Task(taskCount, _content, false);
+  emit TaskCreated(taskCount, _content, false);
 }
 }
